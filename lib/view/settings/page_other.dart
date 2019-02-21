@@ -120,8 +120,8 @@ class OtherSettingsPageState extends SettingsPageState {
         Material(
           color: Theme.of(context).backgroundColor,
           child: ListTile(
-            title: TitleText("Clear History"),
-            subtitle: Text("Does what the name says..."),
+            title: TitleText("Clear Search History"),
+            subtitle: Text("Removes search history suggestions based on past searches."),
             enabled: true,
             onTap: (){
               settingsPref.saveListPref("searchHistory", []);

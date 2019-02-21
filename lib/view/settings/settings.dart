@@ -147,6 +147,21 @@ class _SettingsViewState extends State<SettingsView> {
                   Material(
                     color: Theme.of(context).backgroundColor,
                     child: ListTile(
+                      title: TitleText("Sources"),
+                      subtitle: Text("Manage content sources."),
+                      leading: new Icon(Icons.dns),
+                      enabled: true,
+                      onTap: (){
+                        Navigator.push(context, FadeRoute(
+                            builder: (context) => OtherSettingsPage()
+                        ));
+                      },
+                    ),
+                  ),
+
+                  Material(
+                    color: Theme.of(context).backgroundColor,
+                    child: ListTile(
                       title: TitleText("Other"),
                       subtitle: Text("Search preferences, Change language, Choose player, ..."),
                       leading: new Icon(Icons.settings),
@@ -174,7 +189,7 @@ class _SettingsViewState extends State<SettingsView> {
                         if(_tapCount == 10){
                           Scaffold.of(context).showSnackBar(SnackBar(
                             //content: Text('"Every pair of jeans are skinny jeans if you\'re thicc enough" - Gagnef 12,016HE')
-                            content: Text("🧦 Sorry Mia")
+                            content: Text("\xE2\x9D\xA4 E.D.")
                           ));
 
                           _tapCount = 0;
