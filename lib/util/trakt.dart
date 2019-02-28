@@ -47,6 +47,7 @@ class _TraktAuthState extends State<TraktAuth> {
 
   @override
   Widget build(BuildContext context) {
+
     KaminoAppState appState = context.ancestorStateOfType(const TypeMatcher<KaminoAppState>());
 
     String _url = "https://trakt.tv/oauth/authorize?response_type=code&"

@@ -41,6 +41,7 @@ dependencies:
   dragable_flutter_list: ^1.0.2
   shimmer: ^0.0.6
   encrypt: ^1.0.0+1
+  clipboard_manager: ^0.0.1
   flutter_svg: ^0.10.3
   simple_permissions: ^0.1.9
   html: 0.13.3+3

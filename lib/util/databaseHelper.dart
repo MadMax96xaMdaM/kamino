@@ -205,11 +205,11 @@ Future<String> _getDBPath() async {
   if(!DBdir.existsSync()){
     await DBdir.create();
     final dbFile = new File("${DBdir.path}/apolloDB.db");
-    print("creating a new database file, did not find an existing db file");
+    //print("creating a new database file, did not find an existing db file");
     path = dbFile.path;
 
   }else{
-    print("found an existing db file");
+    //print("found an existing db file");
     path = DBdir.path + "/apolloDB.db";
   }
 
