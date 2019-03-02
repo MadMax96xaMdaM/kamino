@@ -3,7 +3,7 @@ import 'package:kamino/animation/transition.dart';
 import 'package:kamino/ui/uielements.dart';
 import 'package:kamino/util/trakt.dart' as trakt;
 import 'package:kamino/view/settings/page.dart';
-import 'package:clipboard_manager/clipboard_manager.dart';
+import 'package:kamino/models/content.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kamino/util/rd.dart' as rd;
 
@@ -113,39 +113,57 @@ class ExtensionsSettingsPageState extends SettingsPageState {
           ),
         ),
 
-        Card(
-          margin: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-          elevation: 3,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              ListTile(
-                isThreeLine: true,
-                leading: SvgPicture.asset("assets/icons/realdebrid.svg", height: 36, width: 36, color: const Color(0xFF78BB6F)),
-                title: Text('Real-Debrid'),
-                subtitle: Text("Real-Debrid is an unrestricted downloader that allows you to quickly download files hosted on the Internet."),
-              ),
-              ButtonTheme.bar( // make buttons use the appropriate styles for cards
-                child: ButtonBar(
-                  children: <Widget>[
-                     _rdCred != null && _rdCred.length != 3 ? FlatButton(
-                      textColor: Theme.of(context).primaryTextTheme.body1.color,
-                      child: TitleText('Connect'),
-                      onPressed: () async{
-                        await _signinToRD();
-                      },
-                    ) : FlatButton(
-                       textColor: Theme.of(context).primaryTextTheme.body1.color,
-                       child: TitleText('Disconnect'),
-                       onPressed: () {
-                         _clearRDCredentials();
-                       },
-                     ),
-                  ],
+        InkWell(
+          child: Card(
+            margin: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+            elevation: 3,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                ListTile(
+                  isThreeLine: true,
+                  leading: SvgPicture.asset("assets/icons/realdebrid.svg", height: 36, width: 36, color: const Color(0xFF78BB6F)),
+                  title: Text('Real-Debrid'),
+                  subtitle: Text("Real-Debrid is an unrestricted downloader that allows you to quickly download files hosted on the Internet."),
                 ),
-              ),
-            ],
+                ButtonTheme.bar( // make buttons use the appropriate styles for cards
+                  child: ButtonBar(
+                    children: <Widget>[
+                       _rdCred != null && _rdCred.length != 3 ? FlatButton(
+                        textColor: Theme.of(context).primaryTextTheme.body1.color,
+                        child: TitleText('Connect'),
+                        onPressed: () async{
+                          await _signinToRD();
+                        },
+                      ) : FlatButton(
+                         textColor: Theme.of(context).primaryTextTheme.body1.color,
+                         child: TitleText('Disconnect'),
+                         onPressed: () {
+                           _clearRDCredentials();
+                         },
+                       ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
+
+          onTap: () async{
+
+            //await rd.getMagnet;
+
+            Map queryModel = {
+              "mediaType": "tv",
+              "show": "the flash",
+              "season": 05,
+              "tv_year": 2014,
+              "movie": "aquaman",
+              "movie_year": 2018
+            };
+
+            print( await rd.getMagnet(ContentType.MOVIE));
+          },
         )
       ],
     );

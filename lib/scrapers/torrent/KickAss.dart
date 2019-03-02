@@ -3,9 +3,9 @@ import 'package:html/parser.dart' as parser;
 import 'package:html/dom.dart';
 
 
-final String baseUrl = "https://kickasstorrents.cr/search/";
-final String seperator = "%20";
-String search_url = "";
+final String _baseUrl = "https://kickasstorrents.cr/search/";
+final String _seperator = "%20";
+String _search_url = "";
 
 Future<List<Map>> getTVTorrents(Map payload, bool hd_only) async{
 
@@ -20,10 +20,10 @@ Future<List<Map>> getTVTorrents(Map payload, bool hd_only) async{
   "0"+payload["episode"].toString() : payload["episode"].toString();
 
   String search_param =
-      payload["show"].toString().replaceAll(" ",seperator)+seperator+
-          payload["tv_year"].toString()+seperator+"S"+_season +"E"+_episode;
+      payload["show"].toString().replaceAll(" ",_seperator)+_seperator+
+          payload["tv_year"].toString()+_seperator+"S"+_season +"E"+_episode;
 
-  search_url = baseUrl+search_param+"/category/tv/";
+  _search_url = _baseUrl+search_param+"/category/tv/";
 
   //table made up of odd and even columns
   List<String> columns = ["even", "odd"];
@@ -31,7 +31,7 @@ Future<List<Map>> getTVTorrents(Map payload, bool hd_only) async{
   for(int i = 0; i < columns.length; i++){
 
     //HTTP GET request to pull the webpage
-    http.Response res = await http.get(search_url);
+    http.Response res = await http.get(_search_url);
 
     //response body converted to Document object so it can be parsed
     Document document = parser.parse(res.body);
@@ -81,11 +81,11 @@ Future<List<Map>> getMovieTorrents(Map payload, bool hd_only) async{
 
   List<Map> torrents = [];
 
-  String _movie = payload["movie"].toString().replaceAll(" ", seperator);
+  String _movie = payload["movie"].toString().replaceAll(" ", _seperator);
   String _year = payload["movie_year"].toString();
-  String search_param = _movie+seperator + _year;
+  String search_param = _movie+_seperator + _year;
 
-  search_url = baseUrl+search_param+"/category/movies/";
+  _search_url = _baseUrl+search_param+"/category/movies/";
 
   //table made up of odd and even columns
   List<String> columns = ["even", "odd"];
@@ -93,7 +93,7 @@ Future<List<Map>> getMovieTorrents(Map payload, bool hd_only) async{
   for(int i = 0; i < columns.length; i++){
 
     //HTTP GET request to pull the webpage
-    http.Response res = await http.get(search_url);
+    http.Response res = await http.get(_search_url);
 
     //response body converted to Document object so it can be parsed
     Document document = parser.parse(res.body);
