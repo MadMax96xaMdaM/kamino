@@ -153,16 +153,23 @@ class ExtensionsSettingsPageState extends SettingsPageState {
 
             //await rd.getMagnet;
 
-            Map queryModel = {
-              "mediaType": "tv",
-              "show": "the flash",
-              "season": 05,
-              "tv_year": 2014,
-              "movie": "aquaman",
-              "movie_year": 2018
-            };
 
-            print( await rd.getMagnet(ContentType.MOVIE));
+            //Test Magnet
+            String _tempMagnet = "magnet:?xt=urn:btih:038658bb16e77d16e3571e58be5a035e18750091&"
+                "dn=Strike.Back.S07E06.720p.WEB.H264-METCON%5Bettv%5D&xl=2049677531&tr"
+                "=udp%3A%2F%2Ftracker.coppersurfer.tk:6969/announce&tr=udp%3A%2F%"
+                "2Ftracker.leechers-paradise.org:6969/announce&tr=udp%3A%2F%2F"
+                "tracker.pirateparty.gr:6969/announce&tr=udp%3A%2F%2Fexodus.desync.com:"
+                "6969/announce&tr=udp%3A%2F%2Ftracker.cyberia.is:6969/announce&tr=udp%3A%2"
+                "F%2Ftracker.uw0.xyz:6969/announce&tr=udp%3A%2F%2Ftracker.opentrackr.org:"
+                "1337/announce&tr=udp%3A%2F%2Fopen.demonii.si:1337/announce&tr=udp%3A%2F%2"
+                "Fopen.stealth.si:80/announce&tr=udp%3A%2F%2Ftracker.internetwarriors.net:"
+                "1337/announce&tr=udp%3A%2F%2Ftracker.moeking.me:6969/announce&tr=udp%3A%2"
+                "F%2Fexplodie.org:6969/announce&tr=udp%3A%2F%2Fdenis.stalker.upeer.me:6969"
+                "/announce&tr=udp%3A%2F%2Fipv4.tracker.harry.lu:80/announce&tr=udp%3A%2F%"
+                "2Ftracker.torrent.eu.org:451";
+
+            print( await rd.getMagnet(_tempMagnet));
           },
         )
       ],
